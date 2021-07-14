@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "start:dev": "nodemon server.js",
+    "heroku-prebuild": "npm install -f",
+    "heroku-postbuild": "npm run prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
