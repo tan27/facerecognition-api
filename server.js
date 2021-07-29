@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import knex from 'knex';
 import bcrypt from 'bcrypt';
+
 import handleRegister from './controllers/register.js';
 import handleSignin from './controllers/signin.js';
 import handleProfile from './controllers/profile.js';
@@ -21,7 +22,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json())
 app.use(cors());
 
-app.get('/', (req, res) => { res.json('success') });
+app.get('/', (req, res) => { res.send(db.users) });
 app.post('/signin', (req, res) => { handleSignin(req, res, db, bcrypt) });
 app.post('/register', (req, res) => { handleRegister(req, res, db, bcrypt) });
 app.get('/profile/:id', (req, res) => { handleProfile(req, res, db) });
