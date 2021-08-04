@@ -4,7 +4,7 @@ const handleRegister = (req, res, db, bcrypt) => {
         return res.status(400).json('incorrect form submission');
     }
     const salt = bcrypt.genSalt(10);
-    const hash = bcrypt.hash(password, salt);
+    const hash = bcrypt.hash(password.toString(), salt);
       db.transaction(trx => {
         trx.insert({
           hash: hash,
