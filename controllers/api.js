@@ -1,4 +1,5 @@
-import Clarifai from 'clarifai';
+  
+const Clarifai = require('clarifai');
 
 const app = new Clarifai.App({
     apiKey: process.env.API_CLARIFAI
@@ -13,4 +14,6 @@ const handleApiCall = (req, res) => {
       .catch(err => res.status(400).json('unable to work with API'))
   }
 
-  export default handleApiCall;
+  module.exports = {
+    handleApiCall
+  }
