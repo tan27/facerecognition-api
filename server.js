@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import knex from 'knex';
-import bcrypt from 'bcrypt-nodejs';
+import bcrypt from 'bcrypt';
 
 import handleRegister from './controllers/register.js';
 import handleSignin from './controllers/signin.js';
