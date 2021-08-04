@@ -1,14 +1,13 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt-nodejs');
-const cors = require('cors');
-const knex = require('knex');
+import express from 'express';
+import cors from 'cors';
+import knex from 'knex';
+import bcrypt from 'bcrypt';
 
-const register = require('./controllers/register');
-const signin = require('./controllers/signin');
-const profile = require('./controllers/profile');
-const image = require('./controllers/image');
-// const image = require('./controllers/api')
+import handleRegister from './controllers/register.js';
+import handleSignin from './controllers/signin.js';
+import handleProfile from './controllers/profile.js';
+import handleImage from './controllers/image.js';
+import handleApiCall from './controllers/api.js';
 
 const db = knex ({
     client: 'pg',
@@ -19,16 +18,16 @@ const db = knex ({
   });
 
 const app = express();
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json())
+app.use(express.urlencoded({extended: false}));
+app.use(express.json())
 app.use(cors());
 
-app.get('/', (req, res)=> { res.send('success') })
-app.post('/signin', signin.handleSignin(db, bcrypt))
-app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
-app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db)})
-app.put('/image', (req, res) => { image.handleImage(req, res, db)})
-app.post('/imageurl', (req, res) => { image.handleApiCall(req, res)})
+app.get('/', (req, res) => { res.send(db.users) });
+app.post('/signin', (req, res) => { handleSignin(req, res, db, bcrypt) });
+app.post('/register', (req, res) => { handleRegister(req, res, db, bcrypt) });
+app.get('/profile/:id', (req, res) => { handleProfile(req, res, db) });
+app.put('/image', (req, res) => { handleImage(req, res, db) });
+app.post('/imageurl', (req, res) => { handleApiCall(req, res) });
 
 app.listen(process.env.PORT || 3000, () => {
     console.log(`app is running on ${process.env.PORT}`);
