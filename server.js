@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import knex from 'knex';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt-nodejs';
 import dotenv from 'dotenv';
 dotenv.config()
 import handleRegister from './controllers/register.js';
