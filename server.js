@@ -2,7 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import knex from 'knex';
 import bcrypt from 'bcrypt';
-
+import dotenv from 'dotenv';
+dotenv.config()
 import handleRegister from './controllers/register.js';
 import handleSignin from './controllers/signin.js';
 import handleProfile from './controllers/profile.js';
@@ -28,6 +29,7 @@ app.post('/register', (req, res) => { handleRegister(req, res, db, bcrypt) });
 app.get('/profile/:id', (req, res) => { handleProfile(req, res, db) });
 app.put('/image', (req, res) => { handleImage(req, res, db) });
 app.post('/imageurl', (req, res) => { handleApiCall(req, res) });
+
 
 app.listen(process.env.PORT || 3000, () => {
     console.log(`app is running on ${process.env.PORT}`);
