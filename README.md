@@ -16,7 +16,7 @@
 - Deploy to Heroku.
 
 ## Development Improvement
-- [ X ] Clean-up with controllers.
+- [x] Clean-up with controllers.
 
 </p>
 
