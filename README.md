@@ -1,1 +1,1 @@
-# smartbrain-api
+# facerecognition-api
